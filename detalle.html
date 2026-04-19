@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProyeSY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-shell detail-shell">
+    <header class="topbar">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">
+          <img src="assets/logo.png" alt="Logo de ProyeSY">
+        </span>
+        <span class="brand-copy">
+          <strong>ProyeSY</strong>
+          <small>grupo de ventas digital</small>
+        </span>
+        </a>
+
+      <nav class="topbar-nav" aria-label="Principal">
+        <a href="https://forms.google.com/" target="_blank" rel="noreferrer">Reportes</a>
+        <a href="https://discord.gg/v43McZyMRx" target="_blank" rel="noreferrer" class="nav-link-icon">
+          <img src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/66e278299a53f5bf88615e90_Symbol.svg" alt="Discord">
+          <span>Discord</span>
+        </a>
+        <a href="https://itch.io/" target="_blank" rel="noreferrer" class="nav-link-icon nav-link-icon-dark">
+          <img src="https://static.itch.io/images/itchio-textless-black.svg" alt="itch.io">
+          <span>itch.io</span>
+        </a>
+      </nav>
+    </header>
+
+    <a class="back-link" href="index.html">Volver a ProyeSY</a>
+
+    <main id="detail-app" class="detail-page" aria-live="polite">
+      <div class="detail-loading">Cargando recurso...</div>
+    </main>
+  </div>
+
+  <template id="detail-template">
+    <section class="detail-hero">
+      <div class="detail-gallery">
+        <div class="detail-main-media">
+          <img id="main-image" src="" alt="">
+        </div>
+        <div id="gallery-thumbs" class="detail-thumbs"></div>
+      </div>
+
+      <div class="detail-info">
+        <p class="eyebrow detail-category"></p>
+        <h1 class="detail-title"></h1>
+        <p class="detail-description"></p>
+
+        <div class="detail-price-row">
+          <strong class="detail-price"></strong>
+          <span class="detail-stock"></span>
+        </div>
+
+        <div class="detail-highlight-grid">
+          <div class="detail-highlight">
+            <span>Entrega</span>
+            <strong class="detail-delivery"></strong>
+          </div>
+          <div class="detail-highlight">
+            <span>Licencia</span>
+            <strong class="detail-license"></strong>
+          </div>
+        </div>
+
+        <div class="detail-actions">
+          <button id="detail-add-cart" class="button button-primary">Agregar al carrito</button>
+          <a href="#detail-video" class="button button-secondary detail-video-link">Ver video</a>
+        </div>
+
+        <div class="detail-feature-box">
+          <h2>Incluye</h2>
+          <ul id="feature-list" class="detail-list"></ul>
+        </div>
+
+        <div class="detail-license-note">
+          <h2>Licencia de uso</h2>
+          <p id="license-note-text"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="detail-sections">
+      <article class="detail-panel">
+        <p class="eyebrow">Especificaciones</p>
+        <h2>Ficha del recurso</h2>
+        <div id="spec-list" class="spec-grid"></div>
+      </article>
+
+      <article class="detail-panel" id="detail-video-panel">
+        <p class="eyebrow">Multimedia</p>
+        <h2>Preview en YouTube</h2>
+        <div class="video-frame">
+          <iframe
+            id="detail-video"
+            src=""
+            title="Video del recurso"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </article>
+    </section>
+
+    <section class="detail-panel related-panel">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Relacionados</p>
+          <h2>Otros recursos que pueden gustarte</h2>
+        </div>
+      </div>
+      <div id="related-products" class="related-grid"></div>
+    </section>
+  </template>
+
+  <script src="detail.js" type="module"></script>
+</body>
+</html>
