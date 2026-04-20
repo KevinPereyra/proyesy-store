@@ -52,50 +52,5 @@
             }
         ],
         "youtubeId": "PAWj_qfbWa8"
-    },
-    {
-        "id": 2,
-        "name": "fghjfhfghfghfg",
-        "category": "fghfghf",
-        "price": 0,
-        "description": "gfhfgh",
-        "longDescription": "fghfghfgh",
-        "code": "F",
-        "badge": "FGHFGH",
-        "featured": true,
-        "license": "Uso comercial permitido",
-        "licenseNote": "Puedes usar este producto en proyectos personales o comerciales, incluso vender el juego, app o proyecto final que construyas con el. No esta permitido revender, redistribuir o publicar este asset por separado tal como fue comprado.",
-        "format": "Formato digital",
-        "delivery": "Compra en itch.io",
-        "compatibility": "Segun la descripcion del producto",
-        "buyUrl": "https://proyesy.itch.io/",
-        "accent": [
-            "#9be15d",
-            "#00e3ae"
-        ],
-        "features": [
-            "gfhfghf"
-        ],
-        "specs": [
-            {
-                "label": "Tipo",
-                "value": "Asset digital"
-            },
-            {
-                "label": "Uso",
-                "value": "Proyecto final comercial permitido"
-            },
-            {
-                "label": "Reventa",
-                "value": "No permitido por separado"
-            }
-        ],
-        "images": [
-            {
-                "src": "fgfhfghfg",
-                "alt": "Preview del producto"
-            }
-        ],
-        "youtubeId": ""
     }
 ]
