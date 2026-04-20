@@ -6,13 +6,13 @@
   <title>ProyeSY</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <div class="page-shell">
-    <header class="sticky-header">
-      <div class="topbar">
+<body class="home-page home-page-showcase">
+  <div class="page-shell page-shell-home">
+    <header class="site-header">
+      <div class="topbar panel">
         <a href="index.html" class="brand">
           <span class="brand-mark">
             <img src="assets/logo.png" alt="Logo de ProyeSY">
@@ -23,56 +23,60 @@
           </span>
         </a>
 
-        <nav class="topbar-nav" aria-label="Principal">
-          <a href="https://forms.google.com/" target="_blank" rel="noreferrer">Reportes</a>
-          <a href="https://discord.gg/v43McZyMRx" target="_blank" rel="noreferrer" class="nav-link-icon">
-            <img src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/66e278299a53f5bf88615e90_Symbol.svg" alt="Discord">
-            <span>Discord</span>
-          </a>
-          <a href="https://itch.io/" target="_blank" rel="noreferrer" class="nav-link-icon nav-link-icon-dark">
-            <img src="https://static.itch.io/images/itchio-textless-black.svg" alt="itch.io">
-            <span>itch.io</span>
-          </a>
-        </nav>
-      </div>
-
-      <div class="topbar-tools">
-        <div class="field field-search">
-          <label for="search">Buscar</label>
-          <input id="search" type="search" placeholder="Ej: web, asset, pack, diseno, sonido">
-        </div>
-
-        <div class="field">
-          <label for="category">Categorias</label>
-          <select id="category">
-            <option value="all">Todas</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="sort">Precios</label>
-          <select id="sort">
-            <option value="featured">Destacados</option>
-            <option value="price-asc">Menor a mayor</option>
-            <option value="price-desc">Mayor a menor</option>
-            <option value="name">Nombre</option>
-          </select>
+        <div class="header-actions">
+          <nav class="topbar-nav" aria-label="Principal">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeJO2PZle91sXqVTl71euFJO-kwOEZujCg0KE1WWjM7OaSTHw/viewform?usp=publish-editor" target="_blank" rel="noreferrer">Reportes</a>
+            <a href="https://discord.gg/v43McZyMRx" target="_blank" rel="noreferrer" class="nav-link-icon">
+              <img src="https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/66e278299a53f5bf88615e90_Symbol.svg" alt="Discord">
+              <span>Discord</span>
+            </a>
+          </nav>
+          <a href="https://proyesy.itch.io/" target="_blank" rel="noreferrer" class="button button-primary">Ir a itch.io</a>
         </div>
       </div>
     </header>
 
-    <main class="shop-layout shop-layout-single">
-      <section class="storefront">
-        <div class="catalog-header">
-          <div>
-            <p class="eyebrow">Catalogo</p>
-            <h1 id="productos">Tienda de ProyeSY</h1>
-            <p class="catalog-text">Explora nuestros productos y compra cada articulo directamente en itch.io.</p>
+    <main class="catalog-page catalog-page-showcase">
+      <section id="catalogo" class="showcase-shell">
+        <section class="toolbar-panel showcase-toolbar panel">
+          <div class="toolbar-head">
+            <div>
+              <p class="eyebrow">Exhibidor</p>
+              <h1 id="productos" class="showcase-title">Productos ProyeSY</h1>
+            </div>
+            <p id="results-count" class="catalog-results">Cargando recursos...</p>
           </div>
-          <p id="results-count" class="catalog-results">Cargando recursos...</p>
-        </div>
 
-        <div id="product-grid" class="product-grid" aria-live="polite"></div>
+          <div class="topbar-tools showcase-tools">
+            <div class="field field-search">
+              <label for="search">Buscar</label>
+              <input id="search" type="search" placeholder="Ej: terreno, pack, UI, prototipo, sonido">
+            </div>
+
+            <div class="field">
+              <label for="category">Categoria</label>
+              <select id="category">
+                <option value="all">Todas</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="sort">Ordenar</label>
+              <select id="sort">
+                <option value="featured">Destacados</option>
+                <option value="price-asc">Menor a mayor</option>
+                <option value="price-desc">Mayor a menor</option>
+                <option value="name">Nombre</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="category-pills" class="category-pills category-pills-showcase" aria-label="Categorias rapidas"></div>
+        </section>
+
+        <section class="catalog-panel catalog-panel-showcase panel">
+          <div id="product-grid" class="product-grid product-grid-showcase" aria-live="polite"></div>
+        </section>
       </section>
     </main>
   </div>
@@ -80,17 +84,29 @@
   <template id="product-template">
     <article class="product-card">
       <div class="product-cover">
-        <span class="product-code"></span>
-        <span class="product-badge"></span>
+        <img class="product-cover-image" src="" alt="">
+        <div class="product-cover-overlay">
+          <span class="product-badge"></span>
+          <span class="product-code"></span>
+        </div>
       </div>
+
       <div class="product-body">
         <div class="product-meta">
           <span class="product-category"></span>
+          <span class="product-format"></span>
         </div>
+
         <h3 class="product-title"></h3>
         <p class="product-description"></p>
+
+        <div class="product-highlights">
+          <span class="product-chip product-delivery"></span>
+          <span class="product-chip product-compatibility"></span>
+        </div>
+
         <div class="product-footer">
-          <div>
+          <div class="product-price-wrap">
             <strong class="product-price"></strong>
             <small class="product-stock"></small>
           </div>
