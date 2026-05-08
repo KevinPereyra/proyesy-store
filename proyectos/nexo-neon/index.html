@@ -1,0 +1,1002 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nexo Neón | ProyeSY</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --ink: #edfaff;
+        --muted: #9fb3c1;
+        --line: rgba(102, 252, 241, 0.25);
+        --panel: rgba(6, 16, 28, 0.84);
+        --bg: #050812;
+        --cyan: #66fcf1;
+        --green: #64ff6a;
+        --pink: #ff4fd8;
+        --yellow: #ffd166;
+        --danger: #ff5364;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--ink);
+        background:
+          linear-gradient(rgba(102, 252, 241, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(102, 252, 241, 0.05) 1px, transparent 1px),
+          linear-gradient(125deg, rgba(255, 79, 216, 0.16), transparent 36%),
+          linear-gradient(300deg, rgba(100, 255, 106, 0.13), transparent 34%),
+          var(--bg);
+        background-size: 40px 40px, 40px 40px, auto, auto;
+        overflow-x: hidden;
+      }
+
+      a { color: inherit; }
+
+      .wrap {
+        width: min(1220px, 100%);
+        margin: 0 auto;
+        padding: 18px 18px 28px;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 950;
+        text-decoration: none;
+      }
+
+      .brand img,
+      .game-logo {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        box-shadow: 0 0 24px rgba(102, 252, 241, 0.28);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        padding: 0 14px;
+        color: #04110d;
+        background: linear-gradient(135deg, var(--cyan), var(--green));
+        border: 1px solid rgba(102, 252, 241, 0.75);
+        border-radius: 6px;
+        box-shadow: 0 0 24px rgba(102, 252, 241, 0.20);
+        font-weight: 950;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .btn.secondary {
+        color: var(--cyan);
+        background: rgba(102, 252, 241, 0.07);
+        border-color: rgba(102, 252, 241, 0.35);
+        box-shadow: inset 0 0 18px rgba(102, 252, 241, 0.07);
+      }
+
+      main {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 350px;
+        gap: 16px;
+        padding-top: 18px;
+      }
+
+      .hero,
+      .game-shell,
+      .side-panel {
+        background:
+          linear-gradient(180deg, rgba(102, 252, 241, 0.08), transparent 34%),
+          var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.36);
+        overflow: hidden;
+      }
+
+      .hero {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 0.42fr);
+        gap: 20px;
+        padding: 22px;
+      }
+
+      .hero-title {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 14px;
+      }
+
+      .eyebrow {
+        margin: 0 0 8px;
+        color: var(--cyan);
+        font-size: 0.78rem;
+        font-weight: 950;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      p { margin: 0; }
+
+      h1 {
+        font-size: 3rem;
+        line-height: 1;
+        letter-spacing: 0;
+      }
+
+      h2 {
+        font-size: 1.45rem;
+        line-height: 1.1;
+      }
+
+      .lead,
+      .side-panel p,
+      .list li,
+      .ability p,
+      .rank-empty {
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      .hero-actions,
+      .ability-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .hero-actions { margin-top: 18px; }
+
+      .mini-board {
+        min-height: 170px;
+        position: relative;
+        background:
+          linear-gradient(rgba(102, 252, 241, 0.08) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(102, 252, 241, 0.08) 1px, transparent 1px),
+          #050812;
+        background-size: 24px 24px;
+        border: 1px solid rgba(102, 252, 241, 0.24);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .mini-board span {
+        position: absolute;
+        display: block;
+      }
+
+      .mini-core {
+        width: 34px;
+        height: 34px;
+        left: 48%;
+        bottom: 32px;
+        background: var(--green);
+        border: 3px solid var(--ink);
+        border-radius: 50%;
+        box-shadow: 0 0 24px rgba(100, 255, 106, 0.78);
+      }
+
+      .mini-g {
+        width: 36px;
+        height: 36px;
+        right: 20%;
+        top: 22%;
+        background: rgba(255, 79, 216, 0.86);
+        border: 2px solid var(--yellow);
+        transform: rotate(14deg);
+        box-shadow: 0 0 24px rgba(255, 79, 216, 0.68);
+      }
+
+      .mini-e {
+        width: 16px;
+        height: 16px;
+        left: 25%;
+        top: 30%;
+        background: var(--cyan);
+        border-radius: 50%;
+        box-shadow: 0 0 20px rgba(102, 252, 241, 0.82);
+      }
+
+      .game-head {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 14px;
+        align-items: end;
+        padding: 18px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .scorebar {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(74px, 1fr));
+        gap: 8px;
+      }
+
+      .stat,
+      .ability,
+      .rank-list li {
+        padding: 10px;
+        background: rgba(102, 252, 241, 0.06);
+        border: 1px solid rgba(102, 252, 241, 0.18);
+        border-radius: 6px;
+      }
+
+      .stat span {
+        display: block;
+        color: var(--muted);
+        font-size: 0.68rem;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      .stat strong {
+        display: block;
+        margin-top: 3px;
+        color: var(--green);
+        font-size: 1.08rem;
+      }
+
+      .canvas-wrap {
+        position: relative;
+        aspect-ratio: 16 / 10;
+        min-height: 430px;
+      }
+
+      canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: #050812;
+      }
+
+      .touch-controls {
+        position: absolute;
+        right: 12px;
+        bottom: 12px;
+        display: flex;
+        gap: 8px;
+        pointer-events: none;
+      }
+
+      .touch-controls button {
+        min-width: 58px;
+        min-height: 42px;
+        color: var(--cyan);
+        background: rgba(5, 8, 18, 0.72);
+        border: 1px solid rgba(102, 252, 241, 0.28);
+        border-radius: 6px;
+        font-weight: 950;
+        pointer-events: auto;
+      }
+
+      .overlay {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        padding: 18px;
+        background: rgba(5, 8, 18, 0.72);
+        backdrop-filter: blur(4px);
+      }
+
+      .overlay.hidden { display: none; }
+
+      .modal {
+        width: min(460px, 100%);
+        padding: 20px;
+        background: rgba(8, 20, 36, 0.96);
+        border: 1px solid rgba(102, 252, 241, 0.34);
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 0 44px rgba(102, 252, 241, 0.16);
+      }
+
+      .modal h2 {
+        font-size: 2rem;
+        line-height: 1.05;
+      }
+
+      .modal p {
+        margin: 12px 0 14px;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      input {
+        width: 100%;
+        min-height: 44px;
+        padding: 0 12px;
+        margin-bottom: 12px;
+        color: var(--ink);
+        background: rgba(102, 252, 241, 0.06);
+        border: 1px solid rgba(102, 252, 241, 0.28);
+        border-radius: 6px;
+        font: inherit;
+        font-weight: 850;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .side-panel {
+        display: grid;
+        align-content: start;
+        gap: 14px;
+        padding: 18px;
+      }
+
+      .list,
+      .rank-list {
+        display: grid;
+        gap: 8px;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+
+      .list li strong { color: var(--ink); }
+
+      .ability-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .ability strong {
+        color: var(--cyan);
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .rank-list li {
+        display: grid;
+        grid-template-columns: 28px minmax(0, 1fr) auto;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .rank-list b { color: var(--yellow); }
+      .rank-list strong { color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .rank-list span { color: var(--green); font-weight: 950; }
+
+      @media (max-width: 980px) {
+        main,
+        .hero,
+        .game-head {
+          grid-template-columns: 1fr;
+        }
+
+        header {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .scorebar {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 560px) {
+        h1 { font-size: 2.2rem; }
+        .scorebar { grid-template-columns: 1fr; }
+        .canvas-wrap { min-height: 460px; aspect-ratio: 3 / 4; }
+        .touch-controls { left: 12px; right: auto; flex-wrap: wrap; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <a class="brand" href="../../index.html" aria-label="Volver a ProyeSY">
+          <img src="../../assets/logos/nexo-neon.svg" alt="">
+          <span>Nexo Neón</span>
+        </a>
+        <a class="btn secondary" href="../../index.html">Volver al inicio</a>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div>
+            <div class="hero-title">
+              <img class="game-logo" src="../../assets/logos/nexo-neon.svg" alt="">
+              <div>
+                <p class="eyebrow">Arcade web de ProyeSY</p>
+                <h1>Nexo Neón</h1>
+              </div>
+            </div>
+            <p class="lead">
+              Entra al circuito, recoge energía, activa habilidades y compite por el ranking local
+              como en las máquinas arcade clásicas.
+            </p>
+            <div class="hero-actions">
+              <a class="btn" href="#jugar">Jugar ahora</a>
+              <a class="btn secondary" href="#ranking">Ver ranking</a>
+            </div>
+          </div>
+          <div class="mini-board" aria-hidden="true">
+            <span class="mini-e"></span>
+            <span class="mini-g"></span>
+            <span class="mini-core"></span>
+          </div>
+        </section>
+
+        <section class="game-shell" id="jugar" aria-label="Juego Nexo Neón">
+          <div class="game-head">
+            <div>
+              <p class="eyebrow">Circuito activo</p>
+              <h2>Sobrevive, mejora y deja tu nombre.</h2>
+            </div>
+            <div class="scorebar" aria-label="Marcador">
+              <div class="stat"><span>Jugador</span><strong id="playerHud">---</strong></div>
+              <div class="stat"><span>Puntos</span><strong id="score">0</strong></div>
+              <div class="stat"><span>Récord</span><strong id="best">0</strong></div>
+              <div class="stat"><span>Nivel</span><strong id="level">1</strong></div>
+              <div class="stat"><span>Combo</span><strong id="combo">x1</strong></div>
+            </div>
+          </div>
+
+          <div class="canvas-wrap">
+            <canvas id="game" width="960" height="600" aria-label="Área de juego"></canvas>
+            <div class="touch-controls" aria-label="Habilidades táctiles">
+              <button id="dashTouch" type="button">Dash</button>
+              <button id="shieldTouch" type="button">Escudo</button>
+              <button id="pulseTouch" type="button">Pulso</button>
+            </div>
+            <div class="overlay" id="overlay">
+              <div class="modal">
+                <p class="eyebrow">Insert coin</p>
+                <h2 id="overlayTitle">Registra tu nombre</h2>
+                <p id="overlayText">Tu puntaje quedará en el ranking local de esta máquina.</p>
+                <input id="playerName" maxlength="12" autocomplete="off" placeholder="TU NOMBRE">
+                <button class="btn" id="startBtn" type="button">Iniciar partida</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <aside class="side-panel">
+          <div>
+            <p class="eyebrow">Habilidades</p>
+            <h2>Juega con ventajas.</h2>
+          </div>
+          <div class="ability-grid">
+            <div class="ability"><strong>Dash: Espacio</strong><p>Impulso rápido en la dirección en la que te mueves.</p></div>
+            <div class="ability"><strong>Escudo: E</strong><p>Te protege de un golpe durante unos segundos.</p></div>
+            <div class="ability"><strong>Pulso: Q</strong><p>Empuja glitches cercanos y gana aire en momentos difíciles.</p></div>
+          </div>
+
+          <div id="ranking">
+            <p class="eyebrow">Ranking arcade</p>
+            <h2>Mejores jugadores</h2>
+          </div>
+          <ol class="rank-list" id="rankList"></ol>
+          <p class="rank-empty" id="rankEmpty">Todavía no hay partidas guardadas.</p>
+
+          <ul class="list">
+            <li>PC: usa <strong>WASD</strong> o flechas.</li>
+            <li>Celular: arrastra sobre la arena y usa los botones.</li>
+            <li>Cyan suma puntos, rosado es peligro, amarillo es poder.</li>
+          </ul>
+        </aside>
+      </main>
+    </div>
+
+    <script>
+      const canvas = document.getElementById("game");
+      const ctx = canvas.getContext("2d");
+      const scoreEl = document.getElementById("score");
+      const bestEl = document.getElementById("best");
+      const levelEl = document.getElementById("level");
+      const comboEl = document.getElementById("combo");
+      const playerHud = document.getElementById("playerHud");
+      const overlay = document.getElementById("overlay");
+      const overlayTitle = document.getElementById("overlayTitle");
+      const overlayText = document.getElementById("overlayText");
+      const startBtn = document.getElementById("startBtn");
+      const playerNameInput = document.getElementById("playerName");
+      const rankList = document.getElementById("rankList");
+      const rankEmpty = document.getElementById("rankEmpty");
+
+      const storageKey = "nexo-neon-ranking";
+      const state = {
+        running: false,
+        score: 0,
+        best: 0,
+        level: 1,
+        combo: 1,
+        comboTimer: 0,
+        last: 0,
+        spawn: 0,
+        energySpawn: 0,
+        powerSpawn: 2.5,
+        glitches: [],
+        energies: [],
+        powers: [],
+        sparks: [],
+        keys: new Set(),
+        pointer: null,
+        playerName: localStorage.getItem("nexo-neon-player") || "",
+        player: { x: 480, y: 500, r: 18, speed: 285, dash: 0, shield: 0, pulse: 0, dashCooldown: 0, shieldCooldown: 0, pulseCooldown: 0 }
+      };
+
+      playerNameInput.value = state.playerName;
+
+      function loadRanks() {
+        try {
+          return JSON.parse(localStorage.getItem(storageKey) || "[]");
+        } catch {
+          return [];
+        }
+      }
+
+      function saveRanks(ranks) {
+        localStorage.setItem(storageKey, JSON.stringify(ranks.slice(0, 10)));
+      }
+
+      function renderRanks() {
+        const ranks = loadRanks();
+        state.best = ranks[0]?.score || 0;
+        rankList.innerHTML = "";
+        rankEmpty.style.display = ranks.length ? "none" : "block";
+        ranks.forEach((rank, index) => {
+          const li = document.createElement("li");
+          li.innerHTML = `<b>${index + 1}</b><strong>${rank.name}</strong><span>${rank.score}</span>`;
+          rankList.appendChild(li);
+        });
+        bestEl.textContent = state.best;
+      }
+
+      function addRank(name, score, level) {
+        const ranks = loadRanks();
+        ranks.push({ name, score, level, date: new Date().toISOString() });
+        ranks.sort((a, b) => b.score - a.score);
+        saveRanks(ranks);
+        renderRanks();
+      }
+
+      function resizeCanvas() {
+        const rect = canvas.getBoundingClientRect();
+        const ratio = window.devicePixelRatio || 1;
+        canvas.width = Math.max(320, Math.floor(rect.width * ratio));
+        canvas.height = Math.max(360, Math.floor(rect.height * ratio));
+        ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+      }
+
+      function bounds() {
+        const rect = canvas.getBoundingClientRect();
+        return { w: rect.width, h: rect.height };
+      }
+
+      function cleanName(value) {
+        return (value || "PLAYER").trim().toUpperCase().replace(/[^A-Z0-9 _-]/g, "").slice(0, 12) || "PLAYER";
+      }
+
+      function resetGame() {
+        const { w, h } = bounds();
+        state.playerName = cleanName(playerNameInput.value);
+        localStorage.setItem("nexo-neon-player", state.playerName);
+        state.running = true;
+        state.score = 0;
+        state.level = 1;
+        state.combo = 1;
+        state.comboTimer = 0;
+        state.spawn = 0;
+        state.energySpawn = 0;
+        state.powerSpawn = 2.5;
+        state.glitches = [];
+        state.energies = [];
+        state.powers = [];
+        state.sparks = [];
+        Object.assign(state.player, { x: w / 2, y: h - 72, dash: 0, shield: 0, pulse: 0, dashCooldown: 0, shieldCooldown: 0, pulseCooldown: 0 });
+        state.last = performance.now();
+        overlay.classList.add("hidden");
+        updateHud();
+        requestAnimationFrame(loop);
+      }
+
+      function updateHud() {
+        playerHud.textContent = state.playerName || "---";
+        scoreEl.textContent = Math.floor(state.score);
+        bestEl.textContent = Math.floor(Math.max(state.best, state.score));
+        levelEl.textContent = state.level;
+        comboEl.textContent = `x${state.combo}`;
+      }
+
+      function spawnGlitch() {
+        const { w } = bounds();
+        const size = 22 + Math.random() * 30;
+        state.glitches.push({
+          x: Math.random() * (w - size) + size / 2,
+          y: -size,
+          size,
+          speed: 125 + state.level * 23 + Math.random() * 80,
+          spin: Math.random() * Math.PI,
+          drift: (Math.random() - 0.5) * 45
+        });
+      }
+
+      function spawnEnergy() {
+        const { w } = bounds();
+        state.energies.push({
+          x: 28 + Math.random() * (w - 56),
+          y: -24,
+          r: 10,
+          speed: 95 + state.level * 10
+        });
+      }
+
+      function spawnPower() {
+        const { w } = bounds();
+        const types = ["dash", "shield", "pulse"];
+        state.powers.push({
+          type: types[Math.floor(Math.random() * types.length)],
+          x: 32 + Math.random() * (w - 64),
+          y: -28,
+          r: 13,
+          speed: 90 + state.level * 8
+        });
+      }
+
+      function directionVector() {
+        let dx = 0;
+        let dy = 0;
+        if (state.keys.has("arrowleft") || state.keys.has("a")) dx -= 1;
+        if (state.keys.has("arrowright") || state.keys.has("d")) dx += 1;
+        if (state.keys.has("arrowup") || state.keys.has("w")) dy -= 1;
+        if (state.keys.has("arrowdown") || state.keys.has("s")) dy += 1;
+        const len = Math.hypot(dx, dy) || 1;
+        return { x: dx / len, y: dy / len, active: dx || dy };
+      }
+
+      function triggerDash() {
+        const p = state.player;
+        if (!state.running || p.dashCooldown > 0) return;
+        p.dash = 0.16;
+        p.dashCooldown = 1.2;
+      }
+
+      function triggerShield() {
+        const p = state.player;
+        if (!state.running || p.shieldCooldown > 0) return;
+        p.shield = 3.2;
+        p.shieldCooldown = 8;
+      }
+
+      function triggerPulse() {
+        const p = state.player;
+        if (!state.running || p.pulseCooldown > 0) return;
+        p.pulse = 0.18;
+        p.pulseCooldown = 5.5;
+        for (const glitch of state.glitches) {
+          const dx = glitch.x - p.x;
+          const dy = glitch.y - p.y;
+          const dist = Math.hypot(dx, dy) || 1;
+          if (dist < 190) {
+            glitch.x += (dx / dist) * 95;
+            glitch.y += (dy / dist) * 70;
+          }
+        }
+      }
+
+      function movePlayer(dt) {
+        const { w, h } = bounds();
+        const p = state.player;
+        let { x: dx, y: dy, active } = directionVector();
+
+        if (state.pointer) {
+          const vx = state.pointer.x - p.x;
+          const vy = state.pointer.y - p.y;
+          const dist = Math.hypot(vx, vy);
+          if (dist > 4) {
+            dx += vx / dist;
+            dy += vy / dist;
+            active = true;
+          }
+        }
+
+        const len = Math.hypot(dx, dy) || 1;
+        const dashBoost = p.dash > 0 ? 3.2 : 1;
+        const speed = p.speed * dashBoost;
+        if (active) {
+          p.x += (dx / len) * speed * dt;
+          p.y += (dy / len) * speed * dt;
+        }
+        p.x = Math.max(p.r, Math.min(w - p.r, p.x));
+        p.y = Math.max(p.r, Math.min(h - p.r, p.y));
+      }
+
+      function collideCircleRect(circle, rect) {
+        const half = rect.size / 2;
+        const cx = Math.max(rect.x - half, Math.min(circle.x, rect.x + half));
+        const cy = Math.max(rect.y - half, Math.min(circle.y, rect.y + half));
+        return Math.hypot(circle.x - cx, circle.y - cy) < circle.r;
+      }
+
+      function collectCircle(item) {
+        return Math.hypot(state.player.x - item.x, state.player.y - item.y) < state.player.r + item.r;
+      }
+
+      function tickCooldowns(dt) {
+        const p = state.player;
+        p.dash = Math.max(0, p.dash - dt);
+        p.shield = Math.max(0, p.shield - dt);
+        p.pulse = Math.max(0, p.pulse - dt);
+        p.dashCooldown = Math.max(0, p.dashCooldown - dt);
+        p.shieldCooldown = Math.max(0, p.shieldCooldown - dt);
+        p.pulseCooldown = Math.max(0, p.pulseCooldown - dt);
+        state.comboTimer = Math.max(0, state.comboTimer - dt);
+        if (!state.comboTimer) state.combo = 1;
+      }
+
+      function update(dt) {
+        const { h } = bounds();
+        state.level = 1 + Math.floor(state.score / 110);
+        state.spawn -= dt;
+        state.energySpawn -= dt;
+        state.powerSpawn -= dt;
+        tickCooldowns(dt);
+
+        if (state.spawn <= 0) {
+          spawnGlitch();
+          state.spawn = Math.max(0.2, 0.82 - state.level * 0.04);
+        }
+
+        if (state.energySpawn <= 0) {
+          spawnEnergy();
+          state.energySpawn = Math.max(0.45, 1.2 - state.level * 0.025);
+        }
+
+        if (state.powerSpawn <= 0) {
+          spawnPower();
+          state.powerSpawn = 5.5 + Math.random() * 2.5;
+        }
+
+        movePlayer(dt);
+
+        for (const glitch of state.glitches) {
+          glitch.y += glitch.speed * dt;
+          glitch.x += glitch.drift * dt;
+          glitch.spin += dt * 2;
+          if (collideCircleRect(state.player, glitch)) {
+            if (state.player.shield > 0) {
+              glitch.hit = true;
+              state.score += 35;
+              continue;
+            }
+            endGame();
+            return;
+          }
+        }
+
+        for (const energy of state.energies) {
+          energy.y += energy.speed * dt;
+          if (collectCircle(energy)) {
+            energy.collected = true;
+            state.combo = Math.min(9, state.combo + 1);
+            state.comboTimer = 2.2;
+            state.score += 20 * state.combo;
+          }
+        }
+
+        for (const power of state.powers) {
+          power.y += power.speed * dt;
+          if (collectCircle(power)) {
+            power.collected = true;
+            if (power.type === "dash") state.player.dashCooldown = 0;
+            if (power.type === "shield") state.player.shieldCooldown = 0;
+            if (power.type === "pulse") state.player.pulseCooldown = 0;
+            state.score += 45;
+          }
+        }
+
+        state.glitches = state.glitches.filter((g) => g.y < h + g.size && !g.hit && state.running);
+        state.energies = state.energies.filter((e) => e.y < h + e.r && !e.collected && state.running);
+        state.powers = state.powers.filter((p) => p.y < h + p.r && !p.collected && state.running);
+        state.score += dt * (8 + state.level);
+        updateHud();
+      }
+
+      function drawGrid(w, h) {
+        ctx.strokeStyle = "rgba(102, 252, 241, 0.08)";
+        ctx.lineWidth = 1;
+        for (let x = 0; x < w; x += 36) {
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, h);
+          ctx.stroke();
+        }
+        for (let y = 0; y < h; y += 36) {
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(w, y);
+          ctx.stroke();
+        }
+      }
+
+      function drawAbilityText(w) {
+        const p = state.player;
+        ctx.fillStyle = "rgba(237, 250, 255, 0.72)";
+        ctx.font = "12px system-ui";
+        ctx.fillText(`DASH ${p.dashCooldown ? p.dashCooldown.toFixed(1) : "OK"}`, 16, 24);
+        ctx.fillText(`ESCUDO ${p.shieldCooldown ? p.shieldCooldown.toFixed(1) : "OK"}`, 16, 44);
+        ctx.fillText(`PULSO ${p.pulseCooldown ? p.pulseCooldown.toFixed(1) : "OK"}`, 16, 64);
+        ctx.textAlign = "right";
+        ctx.fillText(`NEXO NEON`, w - 16, 24);
+        ctx.textAlign = "left";
+      }
+
+      function draw() {
+        const { w, h } = bounds();
+        ctx.clearRect(0, 0, w, h);
+        const gradient = ctx.createLinearGradient(0, 0, w, h);
+        gradient.addColorStop(0, "#050812");
+        gradient.addColorStop(0.55, "#071426");
+        gradient.addColorStop(1, "#180a24");
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, w, h);
+        drawGrid(w, h);
+
+        for (const energy of state.energies) {
+          ctx.save();
+          ctx.shadowColor = "#66fcf1";
+          ctx.shadowBlur = 20;
+          ctx.fillStyle = "#66fcf1";
+          ctx.beginPath();
+          ctx.arc(energy.x, energy.y, energy.r, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        }
+
+        for (const power of state.powers) {
+          ctx.save();
+          ctx.shadowColor = "#ffd166";
+          ctx.shadowBlur = 20;
+          ctx.fillStyle = "#ffd166";
+          ctx.beginPath();
+          ctx.arc(power.x, power.y, power.r, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillStyle = "#050812";
+          ctx.font = "900 10px system-ui";
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
+          ctx.fillText(power.type[0].toUpperCase(), power.x, power.y + 1);
+          ctx.restore();
+        }
+
+        for (const glitch of state.glitches) {
+          ctx.save();
+          ctx.translate(glitch.x, glitch.y);
+          ctx.rotate(glitch.spin);
+          ctx.shadowColor = "#ff4fd8";
+          ctx.shadowBlur = 18;
+          ctx.fillStyle = "rgba(255, 79, 216, 0.86)";
+          ctx.fillRect(-glitch.size / 2, -glitch.size / 2, glitch.size, glitch.size);
+          ctx.strokeStyle = "#ffd166";
+          ctx.lineWidth = 2;
+          ctx.strokeRect(-glitch.size / 2, -glitch.size / 2, glitch.size, glitch.size);
+          ctx.restore();
+        }
+
+        const p = state.player;
+        if (p.pulse > 0) {
+          ctx.save();
+          ctx.strokeStyle = "rgba(255, 209, 102, 0.65)";
+          ctx.lineWidth = 4;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 190 * (1 - p.pulse / 0.18), 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.restore();
+        }
+
+        if (p.shield > 0) {
+          ctx.save();
+          ctx.strokeStyle = "rgba(102, 252, 241, 0.70)";
+          ctx.lineWidth = 4;
+          ctx.shadowColor = "#66fcf1";
+          ctx.shadowBlur = 20;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r + 12, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.restore();
+        }
+
+        ctx.save();
+        ctx.shadowColor = "#64ff6a";
+        ctx.shadowBlur = 24;
+        ctx.fillStyle = "#64ff6a";
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = "#edfaff";
+        ctx.lineWidth = 3;
+        ctx.stroke();
+        ctx.restore();
+        drawAbilityText(w);
+      }
+
+      function loop(now) {
+        if (!state.running) return;
+        const dt = Math.min(0.033, (now - state.last) / 1000);
+        state.last = now;
+        update(dt);
+        draw();
+        requestAnimationFrame(loop);
+      }
+
+      function endGame() {
+        if (!state.running) return;
+        state.running = false;
+        const finalScore = Math.floor(state.score);
+        addRank(state.playerName, finalScore, state.level);
+        updateHud();
+        overlayTitle.textContent = "Partida terminada";
+        overlayText.textContent = `Puntaje final: ${finalScore}. Tu nombre quedó registrado en el ranking local.`;
+        startBtn.textContent = "Jugar otra vez";
+        overlay.classList.remove("hidden");
+      }
+
+      function pointerPosition(event) {
+        const rect = canvas.getBoundingClientRect();
+        return { x: event.clientX - rect.left, y: event.clientY - rect.top };
+      }
+
+      window.addEventListener("resize", () => {
+        resizeCanvas();
+        draw();
+      });
+
+      window.addEventListener("keydown", (event) => {
+        const key = event.key.toLowerCase();
+        state.keys.add(key);
+        if (key === " ") triggerDash();
+        if (key === "e") triggerShield();
+        if (key === "q") triggerPulse();
+        if (["arrowup", "arrowdown", "arrowleft", "arrowright", " "].includes(key)) event.preventDefault();
+      });
+
+      window.addEventListener("keyup", (event) => {
+        state.keys.delete(event.key.toLowerCase());
+      });
+
+      canvas.addEventListener("pointerdown", (event) => {
+        canvas.setPointerCapture(event.pointerId);
+        state.pointer = pointerPosition(event);
+      });
+
+      canvas.addEventListener("pointermove", (event) => {
+        if (state.pointer) state.pointer = pointerPosition(event);
+      });
+
+      canvas.addEventListener("pointerup", () => {
+        state.pointer = null;
+      });
+
+      document.getElementById("dashTouch").addEventListener("click", triggerDash);
+      document.getElementById("shieldTouch").addEventListener("click", triggerShield);
+      document.getElementById("pulseTouch").addEventListener("click", triggerPulse);
+      startBtn.addEventListener("click", resetGame);
+      renderRanks();
+      resizeCanvas();
+      draw();
+    </script>
+  </body>
+</html>
