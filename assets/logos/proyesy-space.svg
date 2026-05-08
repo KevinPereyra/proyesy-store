@@ -2,14 +2,21 @@
   <title id="title">ProyeSY Space</title>
   <desc id="desc">Logo cuadrado de ProyeSY Space.</desc>
   <defs>
-    <linearGradient id="spaceGradient" x1="20" y1="18" x2="172" y2="174" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#07251f"/>
-      <stop offset="0.58" stop-color="#125c3b"/>
-      <stop offset="1" stop-color="#f59e0b"/>
+    <linearGradient id="spaceGradient" x1="18" y1="18" x2="174" y2="174" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#070b18"/>
+      <stop offset="0.52" stop-color="#081e32"/>
+      <stop offset="1" stop-color="#250b38"/>
+    </linearGradient>
+    <linearGradient id="neonStroke" x1="30" y1="132" x2="160" y2="38" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#66fcf1"/>
+      <stop offset="0.48" stop-color="#64ff6a"/>
+      <stop offset="1" stop-color="#ff4fd8"/>
     </linearGradient>
   </defs>
   <rect width="192" height="192" rx="42" fill="url(#spaceGradient)"/>
-  <circle cx="142" cy="48" r="13" fill="#fef3c7"/>
-  <path d="M37 128c28-53 63-78 118-88" fill="none" stroke="#fef3c7" stroke-width="10" stroke-linecap="round"/>
-  <path d="M48 57h45c27 0 43 14 43 37s-16 37-43 37H74v24H48V57Zm26 23v29h17c12 0 19-5 19-15s-7-14-19-14H74Z" fill="#fff"/>
+  <path d="M24 48h144M24 96h144M24 144h144M48 24v144M96 24v144M144 24v144" stroke="#66fcf1" stroke-opacity=".12" stroke-width="3"/>
+  <rect x="14" y="14" width="164" height="164" rx="34" fill="none" stroke="#66fcf1" stroke-opacity=".55" stroke-width="4"/>
+  <circle cx="144" cy="48" r="13" fill="#ff4fd8"/>
+  <path d="M37 128c28-53 63-78 118-88" fill="none" stroke="url(#neonStroke)" stroke-width="10" stroke-linecap="round"/>
+  <path d="M48 57h45c27 0 43 14 43 37s-16 37-43 37H74v24H48V57Zm26 23v29h17c12 0 19-5 19-15s-7-14-19-14H74Z" fill="#edfaff"/>
 </svg>

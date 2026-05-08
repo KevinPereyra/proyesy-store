@@ -6,18 +6,20 @@
     <title>ProyeSY | Videojuegos y software para negocios</title>
     <style>
       :root {
-        color-scheme: light;
-        --ink: #101916;
-        --muted: #596b64;
-        --line: #dce7e0;
-        --paper: #ffffff;
-        --bg: #f6f8f5;
-        --green: #125c3b;
-        --deep: #083027;
-        --mint: #e7f3ed;
-        --amber: #d97706;
-        --gold: #f59e0b;
-        --shadow: 0 20px 60px rgba(16, 25, 22, 0.12);
+        color-scheme: dark;
+        --ink: #edfaff;
+        --muted: #9bb1bd;
+        --line: rgba(102, 252, 241, 0.24);
+        --paper: rgba(7, 18, 30, 0.78);
+        --bg: #050812;
+        --green: #64ff6a;
+        --cyan: #66fcf1;
+        --blue: #4f8cff;
+        --magenta: #ff4fd8;
+        --amber: #ffd166;
+        --deep: #09121f;
+        --mint: rgba(100, 255, 106, 0.12);
+        --shadow: 0 22px 80px rgba(0, 0, 0, 0.38);
         font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       }
 
@@ -30,9 +32,12 @@
         color: var(--ink);
         overflow-x: hidden;
         background:
-          linear-gradient(120deg, rgba(18, 92, 59, 0.12), transparent 34%),
-          linear-gradient(300deg, rgba(217, 119, 6, 0.10), transparent 30%),
+          linear-gradient(rgba(102, 252, 241, 0.045) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(102, 252, 241, 0.045) 1px, transparent 1px),
+          linear-gradient(115deg, rgba(255, 79, 216, 0.14), transparent 34%),
+          linear-gradient(295deg, rgba(100, 255, 106, 0.12), transparent 32%),
           var(--bg);
+        background-size: 42px 42px, 42px 42px, auto, auto;
       }
 
       a { color: inherit; }
@@ -49,6 +54,7 @@
         justify-content: space-between;
         gap: 18px;
         padding: 18px 0;
+        border-bottom: 1px solid var(--line);
       }
 
       .brand {
@@ -58,6 +64,7 @@
         min-width: 0;
         font-weight: 950;
         text-decoration: none;
+        letter-spacing: 0;
       }
 
       .brand img,
@@ -66,7 +73,7 @@
         height: 48px;
         flex: 0 0 48px;
         border-radius: 12px;
-        box-shadow: 0 10px 28px rgba(18, 92, 59, 0.20);
+        box-shadow: 0 0 26px rgba(102, 252, 241, 0.24);
       }
 
       nav {
@@ -83,26 +90,34 @@
         justify-content: center;
         min-height: 42px;
         padding: 0 14px;
-        border-radius: 8px;
+        border-radius: 6px;
         font-weight: 900;
         text-decoration: none;
       }
 
       nav a {
         color: var(--muted);
+        border: 1px solid transparent;
+      }
+
+      nav a:hover {
+        color: var(--cyan);
+        border-color: rgba(102, 252, 241, 0.22);
+        background: rgba(102, 252, 241, 0.06);
       }
 
       .btn {
-        color: #fff;
-        background: var(--green);
-        box-shadow: 0 12px 30px rgba(18, 92, 59, 0.18);
+        color: #04110d;
+        background: linear-gradient(135deg, var(--cyan), var(--green));
+        border: 1px solid rgba(102, 252, 241, 0.72);
+        box-shadow: 0 0 24px rgba(102, 252, 241, 0.20);
       }
 
       .btn.secondary {
-        color: var(--green);
-        background: #fff;
-        border: 1px solid var(--line);
-        box-shadow: none;
+        color: var(--cyan);
+        background: rgba(102, 252, 241, 0.06);
+        border: 1px solid rgba(102, 252, 241, 0.35);
+        box-shadow: inset 0 0 18px rgba(102, 252, 241, 0.06);
       }
 
       .hero {
@@ -122,7 +137,7 @@
 
       .eyebrow {
         margin: 0 0 10px;
-        color: var(--amber);
+        color: var(--cyan);
         font-size: 0.8rem;
         font-weight: 950;
         letter-spacing: 0;
@@ -139,6 +154,7 @@
         font-size: 4.65rem;
         line-height: 0.94;
         letter-spacing: 0;
+        text-shadow: 0 0 28px rgba(102, 252, 241, 0.16);
       }
 
       h2 {
@@ -168,14 +184,32 @@
       }
 
       .catalog-panel {
+        position: relative;
         padding: 20px;
-        background: rgba(255, 255, 255, 0.82);
+        background:
+          linear-gradient(180deg, rgba(102, 252, 241, 0.09), transparent 38%),
+          rgba(6, 16, 28, 0.88);
         border: 1px solid var(--line);
         border-radius: 8px;
         box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .catalog-panel::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: repeating-linear-gradient(
+          180deg,
+          transparent 0,
+          transparent 9px,
+          rgba(102, 252, 241, 0.045) 10px
+        );
       }
 
       .panel-head {
+        position: relative;
         display: flex;
         align-items: center;
         gap: 12px;
@@ -186,6 +220,7 @@
       .panel-head strong {
         display: block;
         font-size: 1.12rem;
+        color: var(--ink);
       }
 
       .panel-head span,
@@ -196,6 +231,7 @@
       }
 
       .panel-rows {
+        position: relative;
         display: grid;
         gap: 10px;
         margin-top: 16px;
@@ -205,21 +241,24 @@
         display: flex;
         justify-content: space-between;
         gap: 14px;
-        padding: 12px 0;
-        border-bottom: 1px solid var(--line);
+        padding: 12px;
+        background: rgba(102, 252, 241, 0.045);
+        border: 1px solid rgba(102, 252, 241, 0.14);
+        border-radius: 6px;
       }
 
       .row:last-child {
-        border-bottom: 0;
+        border-bottom: 1px solid rgba(102, 252, 241, 0.14);
       }
 
       .row strong {
+        color: var(--green);
         text-align: right;
       }
 
       section {
         padding: 40px 0;
-        border-top: 1px solid var(--line);
+        border-top: 1px solid rgba(102, 252, 241, 0.18);
       }
 
       .section-head {
@@ -249,6 +288,7 @@
         background: var(--paper);
         border: 1px solid var(--line);
         border-radius: 8px;
+        box-shadow: 0 14px 42px rgba(0, 0, 0, 0.22);
       }
 
       .areas-grid {
@@ -262,6 +302,19 @@
         gap: 14px;
         min-height: 250px;
         padding: 20px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .area-card::before,
+      .program-card::before,
+      .quiet-card::before,
+      .value-card::before {
+        content: "";
+        height: 3px;
+        background: linear-gradient(90deg, var(--cyan), var(--magenta), var(--green));
+        position: absolute;
+        inset: 0 0 auto;
       }
 
       .area-top {
@@ -276,25 +329,29 @@
         place-items: center;
         width: 58px;
         height: 58px;
-        color: #fff;
-        background: var(--deep);
+        color: var(--cyan);
+        background: rgba(102, 252, 241, 0.08);
+        border: 1px solid rgba(102, 252, 241, 0.35);
         border-radius: 8px;
         font-size: 1.55rem;
         font-weight: 950;
+        box-shadow: inset 0 0 18px rgba(102, 252, 241, 0.08);
       }
 
       .area-card.games .area-icon {
-        background: #1f2937;
+        color: var(--magenta);
+        background: rgba(255, 79, 216, 0.08);
+        border-color: rgba(255, 79, 216, 0.34);
       }
 
       .area-card h3 {
         margin: 0;
-        color: var(--green);
+        color: var(--cyan);
         font-size: 1.55rem;
       }
 
       .area-card.games h3 {
-        color: #374151;
+        color: var(--magenta);
       }
 
       .area-card p {
@@ -310,6 +367,7 @@
       }
 
       .program-card {
+        position: relative;
         display: grid;
         grid-template-columns: auto minmax(0, 1fr);
         gap: 18px;
@@ -321,8 +379,10 @@
         place-items: center;
         width: 96px;
         height: 96px;
-        background: var(--deep);
+        background: rgba(102, 252, 241, 0.08);
+        border: 1px solid rgba(102, 252, 241, 0.28);
         border-radius: 8px;
+        box-shadow: inset 0 0 20px rgba(102, 252, 241, 0.08);
       }
 
       .product-logo-box img {
@@ -346,6 +406,7 @@
       .program-card h3 {
         margin-bottom: 8px;
         font-size: 1.6rem;
+        color: var(--ink);
       }
 
       .program-card p,
@@ -364,8 +425,9 @@
 
       .chips span {
         padding: 8px 10px;
-        color: var(--green);
-        background: var(--mint);
+        color: var(--cyan);
+        background: rgba(102, 252, 241, 0.08);
+        border: 1px solid rgba(102, 252, 241, 0.18);
         border-radius: 8px;
         font-size: 0.86rem;
         font-weight: 900;
@@ -373,14 +435,15 @@
 
       .quiet-card {
         display: grid;
+        position: relative;
         align-content: start;
         gap: 12px;
         padding: 18px;
-        background: #f9fbf7;
+        background: rgba(9, 18, 31, 0.76);
       }
 
       .quiet-card strong {
-        color: var(--green);
+        color: var(--cyan);
       }
 
       .small-list {
@@ -394,8 +457,8 @@
       .small-list li {
         padding: 10px;
         color: var(--muted);
-        background: #fff;
-        border: 1px solid var(--line);
+        background: rgba(102, 252, 241, 0.05);
+        border: 1px solid rgba(102, 252, 241, 0.14);
         border-radius: 8px;
       }
 
@@ -440,6 +503,7 @@
       }
 
       .value-card {
+        position: relative;
         min-height: 162px;
         padding: 18px;
         background: var(--paper);
@@ -459,6 +523,7 @@
         padding-top: 28px;
         border-top: 1px solid var(--line);
         line-height: 1.5;
+        color: var(--muted);
       }
 
       @media (max-width: 860px) {
@@ -534,7 +599,7 @@
           <span>ProyeSY</span>
         </a>
         <nav aria-label="Navegación">
-          <a href="#areas">Áreas</a>
+          <a href="#areas">Qué hacemos</a>
           <a href="#videojuegos">Videojuegos</a>
           <a href="#programas">Negocios</a>
           <a class="btn" href="proyectos/proyesy-punto/">Abrir ProyeSY Punto</a>
@@ -577,10 +642,10 @@
           <div class="section-head">
             <div>
               <p class="eyebrow">Áreas de ProyeSY</p>
-              <h2>Elige lo que necesitas hoy.</h2>
+              <h2>Entretenimiento y herramientas útiles en un solo lugar.</h2>
             </div>
             <p>
-              ProyeSY reúne entretenimiento y productividad en un solo lugar, sin mezclar lo que busca cada usuario.
+              Encuentra juegos para disfrutar y aplicaciones para resolver tareas reales del día a día.
             </p>
           </div>
 
@@ -594,8 +659,8 @@
                 <div class="area-icon" aria-hidden="true">VG</div>
               </div>
               <p>
-                En esta área encontrarás juegos, demos y experiencias interactivas con identidad propia.
-                Será el lugar para descubrir nuevos lanzamientos cuando estén disponibles.
+                Juegos, demos y experiencias interactivas para quienes buscan algo nuevo para probar,
+                explorar y disfrutar.
               </p>
               <div class="chips">
                 <span>Juegos</span>
@@ -617,8 +682,8 @@
                 <div class="area-icon" aria-hidden="true">SN</div>
               </div>
               <p>
-                Aplicaciones pensadas para negocios que necesitan vender, registrar clientes, controlar inventario
-                y consultar información sin complicarse.
+                Aplicaciones pensadas para vender, registrar clientes, controlar inventario y consultar
+                información sin complicaciones.
               </p>
               <div class="chips">
                 <span>Ventas</span>
@@ -664,7 +729,7 @@
                   <span>Días guardados</span>
                 </div>
                 <div class="card-actions">
-                  <a class="btn" href="proyectos/proyesy-punto/">Abrir proyecto</a>
+                  <a class="btn" href="proyectos/proyesy-punto/">Ver ProyeSY Punto</a>
                   <a class="btn secondary" href="proyectos/proyesy-punto/ProyeSYPunto.apk">Descargar APK</a>
                 </div>
               </div>
@@ -673,8 +738,8 @@
             <aside class="quiet-card" aria-label="Próximos proyectos de software">
               <strong>Más herramientas en camino</strong>
               <p>
-                ProyeSY seguirá sumando soluciones para negocios: gestión, reportes, automatizaciones y nuevas apps
-                que ayuden a trabajar con menos desorden.
+                ProyeSY seguirá sumando soluciones para vender, administrar mejor y revisar información importante
+                cuando haga falta.
               </p>
               <ul class="small-list">
                 <li>Ventas e inventario</li>
@@ -689,10 +754,10 @@
           <div class="section-head">
             <div>
               <p class="eyebrow">Próximamente</p>
-              <h2>Nuevos juegos y nuevas herramientas irán llegando a ProyeSY.</h2>
+              <h2>Nuevos juegos y herramientas irán llegando a ProyeSY.</h2>
             </div>
             <p>
-              Este sitio crecerá con productos reales: algunos hechos para jugar, otros hechos para que un negocio funcione mejor.
+              Próximamente habrá más experiencias para jugar y más soluciones para trabajar mejor.
             </p>
           </div>
 
@@ -706,8 +771,8 @@
               <p>Más soluciones para ventas, inventario, clientes, reportes y procesos de negocio.</p>
             </article>
             <article class="value-card">
-              <h3>Un solo lugar</h3>
-              <p>Todo lo publicado por ProyeSY estará reunido aquí para encontrarlo rápido y descargarlo fácil.</p>
+              <h3>Acceso fácil</h3>
+              <p>Encuentra rápidamente lo disponible, revisa sus funciones y descarga lo que necesites.</p>
             </article>
           </div>
         </section>
