@@ -281,7 +281,14 @@
         gap: 14px;
       }
 
+      .games-showcase {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(300px, 0.62fr);
+        gap: 14px;
+      }
+
       .area-card,
+      .game-card,
       .program-card,
       .quiet-card,
       .logo-card {
@@ -307,6 +314,7 @@
       }
 
       .area-card::before,
+      .game-card::before,
       .program-card::before,
       .quiet-card::before,
       .value-card::before {
@@ -364,6 +372,127 @@
         flex-wrap: wrap;
         gap: 8px;
         align-self: end;
+      }
+
+      .game-card {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(260px, 0.58fr);
+        gap: 18px;
+        padding: 20px;
+        overflow: hidden;
+      }
+
+      .game-card h3 {
+        margin-bottom: 8px;
+        color: var(--magenta);
+        font-size: 1.75rem;
+      }
+
+      .game-card p {
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      .game-preview {
+        position: relative;
+        min-height: 260px;
+        background:
+          linear-gradient(rgba(102, 252, 241, 0.08) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(102, 252, 241, 0.08) 1px, transparent 1px),
+          linear-gradient(145deg, rgba(255, 79, 216, 0.20), transparent 52%),
+          #050812;
+        background-size: 26px 26px, 26px 26px, auto, auto;
+        border: 1px solid rgba(102, 252, 241, 0.25);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: inset 0 0 38px rgba(102, 252, 241, 0.10);
+      }
+
+      .core,
+      .energy,
+      .glitch {
+        position: absolute;
+        display: block;
+      }
+
+      .core {
+        width: 36px;
+        height: 36px;
+        left: 48%;
+        bottom: 42px;
+        background: var(--green);
+        border: 3px solid var(--ink);
+        border-radius: 50%;
+        box-shadow: 0 0 26px rgba(100, 255, 106, 0.75);
+      }
+
+      .energy {
+        width: 18px;
+        height: 18px;
+        right: 26%;
+        top: 34%;
+        background: var(--cyan);
+        border-radius: 50%;
+        box-shadow: 0 0 22px rgba(102, 252, 241, 0.80);
+      }
+
+      .energy.two {
+        right: auto;
+        left: 22%;
+        top: 22%;
+      }
+
+      .glitch {
+        width: 44px;
+        height: 44px;
+        right: 18%;
+        top: 16%;
+        background: rgba(255, 79, 216, 0.86);
+        border: 2px solid var(--amber);
+        transform: rotate(14deg);
+        box-shadow: 0 0 24px rgba(255, 79, 216, 0.70);
+      }
+
+      .glitch.two {
+        right: auto;
+        left: 18%;
+        top: 56%;
+        width: 34px;
+        height: 34px;
+        transform: rotate(-18deg);
+      }
+
+      .hud-label {
+        position: absolute;
+        left: 12px;
+        top: 12px;
+        padding: 7px 9px;
+        color: var(--cyan);
+        background: rgba(5, 8, 18, 0.72);
+        border: 1px solid rgba(102, 252, 241, 0.24);
+        border-radius: 6px;
+        font-size: 0.74rem;
+        font-weight: 950;
+      }
+
+      .game-side {
+        display: grid;
+        align-content: start;
+        gap: 12px;
+        padding: 18px;
+        background: rgba(9, 18, 31, 0.76);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+      }
+
+      .game-side strong {
+        color: var(--cyan);
+      }
+
+      .game-side p {
+        color: var(--muted);
+        line-height: 1.55;
       }
 
       .program-card {
@@ -547,6 +676,8 @@
 
         .hero,
         .areas-grid,
+        .games-showcase,
+        .game-card,
         .programs,
         .program-card,
         .logo-grid,
@@ -616,7 +747,8 @@
               para que los negocios vendan, controlen inventario y trabajen con más orden.
             </p>
             <div class="hero-actions">
-              <a class="btn" href="proyectos/proyesy-punto/">Conocer ProyeSY Punto</a>
+              <a class="btn" href="proyectos/test/">Jugar Test</a>
+              <a class="btn secondary" href="proyectos/proyesy-punto/">Conocer ProyeSY Punto</a>
               <a class="btn secondary" href="#areas">Explorar ProyeSY</a>
             </div>
           </div>
@@ -651,7 +783,7 @@
           </div>
 
           <div class="areas-grid">
-            <article class="area-card games" id="videojuegos">
+            <article class="area-card games">
               <div class="area-top">
                 <div>
                   <p class="eyebrow">Área creativa</p>
@@ -696,6 +828,63 @@
                 <a class="btn" href="#programas">Ver software</a>
               </div>
             </article>
+          </div>
+        </section>
+
+        <section id="videojuegos">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Videojuego disponible</p>
+              <h2>Test: Neon Core ya se puede jugar en el navegador.</h2>
+            </div>
+            <p>
+              Un arcade rápido de reflejos donde esquivas errores, recoges energía y buscas superar tu récord.
+            </p>
+          </div>
+
+          <div class="games-showcase">
+            <article class="game-card">
+              <div>
+                <span class="status">Jugable ahora</span>
+                <h3>Test: Neon Core</h3>
+                <p>
+                  Entra a una arena neón, controla el núcleo verde y mantente vivo mientras el sistema lanza glitches.
+                  Es simple, directo y pensado para jugar desde PC o celular.
+                </p>
+                <div class="chips">
+                  <span>Arcade</span>
+                  <span>Reflejos</span>
+                  <span>Neón</span>
+                  <span>Récord local</span>
+                </div>
+                <div class="card-actions">
+                  <a class="btn" href="proyectos/test/">Jugar ahora</a>
+                  <a class="btn secondary" href="#programas">Ver software</a>
+                </div>
+              </div>
+
+              <div class="game-preview" aria-hidden="true">
+                <span class="hud-label">SCORE 0250 / CORE ONLINE</span>
+                <span class="energy"></span>
+                <span class="energy two"></span>
+                <span class="glitch"></span>
+                <span class="glitch two"></span>
+                <span class="core"></span>
+              </div>
+            </article>
+
+            <aside class="game-side">
+              <strong>Cómo se juega</strong>
+              <p>
+                Muévete con teclado o tocando la pantalla. Junta energía cyan, evita los glitches rosados
+                y conserva tu mejor puntaje en el navegador.
+              </p>
+              <ul class="small-list">
+                <li>PC: WASD o flechas</li>
+                <li>Celular: arrastra sobre la arena</li>
+                <li>Objetivo: sobrevivir y sumar puntos</li>
+              </ul>
+            </aside>
           </div>
         </section>
 
