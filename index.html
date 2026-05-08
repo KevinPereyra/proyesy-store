@@ -7,16 +7,17 @@
     <style>
       :root {
         color-scheme: light;
-        --ink: #101c18;
-        --muted: #5d6e65;
-        --line: #dce6df;
+        --ink: #101916;
+        --muted: #596b64;
+        --line: #dce7e0;
         --paper: #ffffff;
-        --bg: #f4f7f4;
+        --bg: #f6f8f5;
         --green: #125c3b;
-        --deep: #082f25;
-        --amber: #b45309;
-        --soft: #eaf4ee;
-        --wash: #edf4ef;
+        --deep: #083027;
+        --mint: #e7f3ed;
+        --amber: #d97706;
+        --gold: #f59e0b;
+        --shadow: 0 20px 60px rgba(16, 25, 22, 0.12);
         font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       }
 
@@ -29,50 +30,50 @@
         color: var(--ink);
         overflow-x: hidden;
         background:
-          linear-gradient(135deg, rgba(18, 92, 59, 0.11), transparent 38%),
-          linear-gradient(315deg, rgba(180, 83, 9, 0.10), transparent 32%),
+          linear-gradient(120deg, rgba(18, 92, 59, 0.12), transparent 34%),
+          linear-gradient(300deg, rgba(217, 119, 6, 0.10), transparent 30%),
           var(--bg);
       }
 
       a { color: inherit; }
 
       .wrap {
-        width: min(1120px, 100%);
+        width: min(1160px, 100%);
         margin: 0 auto;
-        padding: 0 18px 38px;
+        padding: 0 18px 34px;
       }
 
       header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 14px;
+        gap: 18px;
         padding: 18px 0;
-        border-bottom: 1px solid var(--line);
       }
 
       .brand {
-        display: flex;
+        display: inline-flex;
         align-items: center;
         gap: 12px;
         min-width: 0;
-        font-weight: 900;
+        font-weight: 950;
+        text-decoration: none;
       }
 
-      .brand svg,
-      .program-logo svg {
-        width: 46px;
-        height: 46px;
-        flex: 0 0 46px;
-        border-radius: 10px;
-        box-shadow: 0 8px 24px rgba(18, 92, 59, 0.22);
+      .brand img,
+      .product-mark {
+        width: 48px;
+        height: 48px;
+        flex: 0 0 48px;
+        border-radius: 12px;
+        box-shadow: 0 10px 28px rgba(18, 92, 59, 0.20);
       }
 
       nav {
         display: flex;
-        gap: 8px;
         flex-wrap: wrap;
         justify-content: flex-end;
+        gap: 8px;
       }
 
       nav a,
@@ -94,32 +95,36 @@
       .btn {
         color: #fff;
         background: var(--green);
+        box-shadow: 0 12px 30px rgba(18, 92, 59, 0.18);
       }
 
       .btn.secondary {
         color: var(--green);
         background: #fff;
         border: 1px solid var(--line);
+        box-shadow: none;
       }
 
       .hero {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(300px, 0.68fr);
+        grid-template-columns: minmax(0, 1fr) minmax(310px, 0.58fr);
         gap: 28px;
         align-items: center;
-        padding: 64px 0 44px;
+        min-height: 620px;
+        padding: 46px 0 58px;
+        border-top: 1px solid var(--line);
       }
 
-      .hero > div,
-      .studio-panel {
+      .hero-copy,
+      .catalog-panel {
         min-width: 0;
       }
 
       .eyebrow {
         margin: 0 0 10px;
         color: var(--amber);
-        font-size: 0.82rem;
-        font-weight: 900;
+        font-size: 0.8rem;
+        font-weight: 950;
         letter-spacing: 0;
         text-transform: uppercase;
       }
@@ -130,88 +135,99 @@
       p { margin: 0; }
 
       h1 {
-        max-width: 760px;
-        font-size: 4.8rem;
+        max-width: 790px;
+        font-size: 4.65rem;
         line-height: 0.94;
         letter-spacing: 0;
       }
 
       h2 {
         max-width: 760px;
-        font-size: 2.35rem;
-        line-height: 1.06;
+        font-size: 2.25rem;
+        line-height: 1.08;
         letter-spacing: 0;
       }
 
       .lead {
-        max-width: 690px;
+        max-width: 680px;
         margin-top: 18px;
         color: var(--muted);
-        font-size: 1.18rem;
-        line-height: 1.55;
+        font-size: 1.14rem;
+        line-height: 1.6;
       }
 
-      .hero-actions {
+      .hero-actions,
+      .card-actions {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
+      }
+
+      .hero-actions {
         margin-top: 24px;
       }
 
-      .studio-panel {
-        display: grid;
-        gap: 10px;
-        padding: 18px;
-        background: rgba(255, 255, 255, 0.78);
+      .catalog-panel {
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.82);
         border: 1px solid var(--line);
         border-radius: 8px;
+        box-shadow: var(--shadow);
       }
 
-      .panel-title {
+      .panel-head {
         display: flex;
         align-items: center;
-        gap: 10px;
-        padding-bottom: 10px;
+        gap: 12px;
+        padding-bottom: 16px;
         border-bottom: 1px solid var(--line);
       }
 
-      .panel-title svg {
-        width: 42px;
-        height: 42px;
-        border-radius: 9px;
+      .panel-head strong {
+        display: block;
+        font-size: 1.12rem;
       }
 
-      .metric {
-        display: flex;
-        justify-content: space-between;
-        gap: 12px;
-        padding: 13px;
-        background: #fff;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-      }
-
-      .metric span,
-      .program-meta,
+      .panel-head span,
+      .row span,
+      .logo-path,
       footer {
         color: var(--muted);
       }
 
-      .metric span {
-        font-weight: 800;
+      .panel-rows {
+        display: grid;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .row {
+        display: flex;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .row:last-child {
+        border-bottom: 0;
+      }
+
+      .row strong {
+        text-align: right;
       }
 
       section {
-        padding: 34px 0;
+        padding: 40px 0;
         border-top: 1px solid var(--line);
       }
 
       .section-head {
         display: flex;
-        justify-content: space-between;
         align-items: end;
+        justify-content: space-between;
         gap: 18px;
-        margin-bottom: 16px;
+        margin-bottom: 18px;
       }
 
       .section-head p {
@@ -220,65 +236,39 @@
         line-height: 1.55;
       }
 
-      .grid {
+      .programs {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 12px;
+        grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.5fr);
+        gap: 14px;
       }
 
-      article,
       .program-card,
-      .roadmap-card {
+      .quiet-card,
+      .logo-card {
         background: var(--paper);
         border: 1px solid var(--line);
         border-radius: 8px;
       }
 
-      article {
-        min-height: 164px;
-        padding: 18px;
-      }
-
-      article h3 {
-        margin-bottom: 8px;
-        color: var(--green);
-        font-size: 1.15rem;
-      }
-
-      article p,
-      .program-card p,
-      .roadmap-card p {
-        color: var(--muted);
-        line-height: 1.55;
-      }
-
-      .programs {
-        display: grid;
-        grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.55fr);
-        gap: 12px;
-      }
-
       .program-card {
         display: grid;
         grid-template-columns: auto minmax(0, 1fr);
-        gap: 16px;
+        gap: 18px;
         padding: 20px;
-        align-items: start;
       }
 
-      .program-logo {
+      .product-logo-box {
         display: grid;
         place-items: center;
-        width: 84px;
-        height: 84px;
+        width: 96px;
+        height: 96px;
         background: var(--deep);
         border-radius: 8px;
       }
 
-      .program-logo svg {
-        width: 58px;
-        height: 58px;
-        box-shadow: none;
+      .product-logo-box img {
+        width: 70px;
+        height: 70px;
       }
 
       .status {
@@ -288,15 +278,22 @@
         padding: 0 9px;
         margin-bottom: 10px;
         color: var(--green);
-        background: var(--soft);
+        background: var(--mint);
         border-radius: 8px;
         font-size: 0.78rem;
-        font-weight: 900;
+        font-weight: 950;
       }
 
       .program-card h3 {
         margin-bottom: 8px;
-        font-size: 1.55rem;
+        font-size: 1.6rem;
+      }
+
+      .program-card p,
+      .quiet-card p,
+      .logo-card p {
+        color: var(--muted);
+        line-height: 1.55;
       }
 
       .chips {
@@ -309,21 +306,21 @@
       .chips span {
         padding: 8px 10px;
         color: var(--green);
-        background: var(--soft);
+        background: var(--mint);
         border-radius: 8px;
-        font-size: 0.88rem;
+        font-size: 0.86rem;
         font-weight: 900;
       }
 
-      .roadmap-card {
+      .quiet-card {
         display: grid;
         align-content: start;
         gap: 12px;
         padding: 18px;
-        background: var(--wash);
+        background: #f9fbf7;
       }
 
-      .roadmap-card strong {
+      .quiet-card strong {
         color: var(--green);
       }
 
@@ -337,22 +334,75 @@
 
       .small-list li {
         padding: 10px;
-        background: rgba(255, 255, 255, 0.72);
+        color: var(--muted);
+        background: #fff;
         border: 1px solid var(--line);
         border-radius: 8px;
+      }
+
+      .logo-grid,
+      .value-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+
+      .logo-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .logo-card {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        gap: 16px;
+        padding: 18px;
+        align-items: center;
+      }
+
+      .logo-card img {
+        width: 86px;
+        height: 86px;
+        border-radius: 16px;
+        box-shadow: 0 10px 28px rgba(18, 92, 59, 0.18);
+      }
+
+      .logo-card h3,
+      .value-card h3 {
+        margin-bottom: 7px;
+        color: var(--green);
+      }
+
+      .logo-path {
+        display: inline-block;
+        margin-top: 10px;
+        font-size: 0.84rem;
+        font-weight: 800;
+        overflow-wrap: anywhere;
+      }
+
+      .value-card {
+        min-height: 162px;
+        padding: 18px;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+      }
+
+      .value-card p {
         color: var(--muted);
+        line-height: 1.55;
       }
 
       footer {
         display: flex;
         justify-content: space-between;
-        gap: 12px;
-        padding: 28px 0 0;
+        gap: 14px;
+        padding-top: 28px;
         border-top: 1px solid var(--line);
         line-height: 1.5;
       }
 
-      @media (max-width: 820px) {
+      @media (max-width: 860px) {
         header,
         .section-head,
         footer {
@@ -368,23 +418,27 @@
         .btn {
           min-height: 40px;
           padding: 0 11px;
-          font-size: 0.9rem;
-        }
-
-        nav .btn {
-          flex: 1 1 170px;
+          font-size: 0.92rem;
         }
 
         .hero,
-        .grid,
         .programs,
-        .program-card {
+        .program-card,
+        .logo-grid,
+        .logo-card,
+        .value-grid {
           grid-template-columns: 1fr;
         }
 
+        .hero {
+          min-height: auto;
+          padding: 34px 0 42px;
+        }
+
         h1 {
-          max-width: min(340px, calc(100vw - 36px));
-          font-size: 2.85rem;
+          max-width: min(350px, calc(100vw - 36px));
+          font-size: 2.72rem;
+          line-height: 1;
         }
 
         h2 {
@@ -392,13 +446,22 @@
         }
 
         .lead {
-          max-width: min(340px, calc(100vw - 36px));
+          max-width: min(350px, calc(100vw - 36px));
           font-size: 1rem;
         }
 
-        .program-logo {
-          width: 72px;
-          height: 72px;
+        .catalog-panel {
+          box-shadow: none;
+        }
+
+        .product-logo-box {
+          width: 78px;
+          height: 78px;
+        }
+
+        .product-logo-box img {
+          width: 58px;
+          height: 58px;
         }
       }
     </style>
@@ -406,177 +469,158 @@
   <body>
     <div class="wrap">
       <header>
-        <div class="brand">
-          <svg viewBox="0 0 192 192" aria-hidden="true">
-            <defs>
-              <linearGradient id="psg" x1="20" y1="18" x2="172" y2="174" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#07251f"/>
-                <stop offset="0.58" stop-color="#125c3b"/>
-                <stop offset="1" stop-color="#f59e0b"/>
-              </linearGradient>
-            </defs>
-            <rect width="192" height="192" rx="42" fill="url(#psg)"/>
-            <circle cx="142" cy="48" r="13" fill="#fef3c7"/>
-            <path d="M37 128c28-53 63-78 118-88" fill="none" stroke="#fef3c7" stroke-width="10" stroke-linecap="round"/>
-            <path d="M48 57h45c27 0 43 14 43 37s-16 37-43 37H74v24H48V57Zm26 23v29h17c12 0 19-5 19-15s-7-14-19-14H74Z" fill="#ffffff"/>
-          </svg>
+        <a class="brand" href="index.html" aria-label="Inicio de ProyeSY Space">
+          <img src="assets/logos/proyesy-space.svg" alt="">
           <span>ProyeSY Space</span>
-        </div>
-        <nav aria-label="Navegacion">
-          <a href="#studio">Studio</a>
+        </a>
+        <nav aria-label="Navegación">
           <a href="#programas">Programas</a>
-          <a href="#vision">Vision</a>
-          <a class="btn" href="#programas">Ver programas</a>
+          <a href="#logos">Logos</a>
+          <a href="#vision">Visión</a>
+          <a class="btn" href="proyectos/proyesy-punto/">Abrir ProyeSY Punto</a>
         </nav>
       </header>
 
       <main>
         <section class="hero">
-          <div>
+          <div class="hero-copy">
             <p class="eyebrow">Studio de software y herramientas digitales</p>
-            <h1>ProyeSY Space crea sistemas para trabajar mejor.</h1>
+            <h1>Un lugar claro para todos los proyectos ProyeSY.</h1>
             <p class="lead">
-              Somos un studio enfocado en aplicaciones simples, bonitas y utiles para negocios reales.
-              Construimos programas que ahorran tiempo, ordenan informacion y ayudan a tomar mejores decisiones.
+              ProyeSY Space reúne apps, sistemas y herramientas para negocios reales. Cada proyecto tiene su carpeta,
+              su página, sus archivos y su identidad visual lista para reutilizarse.
             </p>
             <div class="hero-actions">
-              <a class="btn" href="#programas">Explorar programas</a>
-              <a class="btn secondary" href="#studio">Conocer el studio</a>
+              <a class="btn" href="#programas">Ver programas</a>
+              <a class="btn secondary" href="#logos">Ver logos separados</a>
             </div>
           </div>
 
-          <aside class="studio-panel" aria-label="Resumen de ProyeSY Space">
-            <div class="panel-title">
-              <svg viewBox="0 0 192 192" aria-hidden="true">
-                <rect width="192" height="192" rx="42" fill="#125c3b"/>
-                <circle cx="142" cy="48" r="13" fill="#fef3c7"/>
-                <path d="M37 128c28-53 63-78 118-88" fill="none" stroke="#fef3c7" stroke-width="10" stroke-linecap="round"/>
-                <path d="M48 57h45c27 0 43 14 43 37s-16 37-43 37H74v24H48V57Zm26 23v29h17c12 0 19-5 19-15s-7-14-19-14H74Z" fill="#ffffff"/>
-              </svg>
+          <aside class="catalog-panel" aria-label="Resumen del catálogo">
+            <div class="panel-head">
+              <img class="product-mark" src="assets/logos/proyesy-space.svg" alt="">
               <div>
                 <strong>ProyeSY Space</strong>
-                <p class="program-meta">Apps, paginas y sistemas a medida.</p>
+                <span>Catálogo ordenado por proyectos</span>
               </div>
             </div>
-            <div class="metric"><span>Primer programa</span><strong>ProyeSY Punto</strong></div>
-            <div class="metric"><span>Enfoque</span><strong>Negocios reales</strong></div>
-            <div class="metric"><span>Estilo</span><strong>Simple y claro</strong></div>
-            <div class="metric"><span>Catalogo</span><strong>En crecimiento</strong></div>
-          </aside>
-        </section>
-
-        <section id="studio">
-          <div class="section-head">
-            <div>
-              <p class="eyebrow">Bios del studio</p>
-              <h2>Diseñamos herramientas que se sienten cercanas, pero trabajan en serio.</h2>
+            <div class="panel-rows">
+              <div class="row"><span>Proyecto activo</span><strong>ProyeSY Punto</strong></div>
+              <div class="row"><span>Organización</span><strong>Carpetas por proyecto</strong></div>
+              <div class="row"><span>Logos</span><strong>SVG reutilizables</strong></div>
+              <div class="row"><span>Catálogo</span><strong>Listo para crecer</strong></div>
             </div>
-            <p>
-              ProyeSY Space nace para convertir ideas en productos digitales utiles: apps locales, paneles, paginas,
-              automatizaciones y sistemas que puedan crecer junto con cada proyecto.
-            </p>
-          </div>
-          <div class="grid">
-            <article>
-              <h3>Utilidad primero</h3>
-              <p>Cada programa tiene una tarea concreta: vender, ordenar, registrar, consultar, reportar o simplificar un proceso.</p>
-            </article>
-            <article>
-              <h3>Identidad propia</h3>
-              <p>Cuidamos nombre, logo, colores y experiencia para que cada herramienta se sienta parte del ecosistema ProyeSY.</p>
-            </article>
-            <article>
-              <h3>Preparado para crecer</h3>
-              <p>El catalogo esta pensado para sumar nuevos programas sin romper la organizacion ni la claridad del sitio.</p>
-            </article>
-          </div>
+          </aside>
         </section>
 
         <section id="programas">
           <div class="section-head">
             <div>
               <p class="eyebrow">Programas</p>
-              <h2>El catalogo de ProyeSY Space.</h2>
+              <h2>El catálogo empieza con ProyeSY Punto.</h2>
             </div>
             <p>
-              Este apartado ira creciendo con cada nueva herramienta. Por ahora presentamos nuestro primer programa activo.
+              Cuando agregues otro proyecto, puede tener su propia carpeta dentro de <strong>proyectos</strong>,
+              con página, descargas, imágenes y recursos viviendo juntos.
             </p>
           </div>
 
           <div class="programs">
             <article class="program-card">
-              <div class="program-logo">
-                <svg viewBox="0 0 192 192" aria-label="Logo de ProyeSY Punto">
-                  <defs>
-                    <linearGradient id="punto" x1="20" y1="18" x2="172" y2="174" gradientUnits="userSpaceOnUse">
-                      <stop stop-color="#07251f"/>
-                      <stop offset="0.58" stop-color="#125c3b"/>
-                      <stop offset="1" stop-color="#f59e0b"/>
-                    </linearGradient>
-                  </defs>
-                  <rect width="192" height="192" rx="42" fill="url(#punto)"/>
-                  <circle cx="142" cy="48" r="13" fill="#fef3c7"/>
-                  <path d="M37 128c28-53 63-78 118-88" fill="none" stroke="#fef3c7" stroke-width="10" stroke-linecap="round"/>
-                  <path d="M48 57h45c27 0 43 14 43 37s-16 37-43 37H74v24H48V57Zm26 23v29h17c12 0 19-5 19-15s-7-14-19-14H74Z" fill="#ffffff"/>
-                  <path d="M120 133h31v7h-31v-7Zm0 13h23v7h-23v-7Zm0 13h31v7h-31v-7Z" fill="#ffffff"/>
-                </svg>
+              <div class="product-logo-box">
+                <img src="assets/logos/proyesy-punto.svg" alt="Logo de ProyeSY Punto">
               </div>
               <div>
                 <span class="status">Disponible</span>
                 <h3>ProyeSY Punto</h3>
                 <p>
-                  APK de ventas e inventario para celulares y tablets. Permite escanear codigos de barra,
-                  vender productos por unidad o kilo, registrar clientes, controlar creditos, guardar PDF y conservar dias anteriores.
+                  APK de ventas e inventario para celulares y tablets. Permite escanear códigos de barra,
+                  vender productos por unidad o kilo, registrar clientes, controlar créditos, generar PDF y conservar días anteriores.
                 </p>
                 <div class="chips">
                   <span>Punto de venta</span>
                   <span>Inventario</span>
                   <span>Clientes</span>
                   <span>PDF</span>
-                  <span>Dias guardados</span>
+                  <span>Días guardados</span>
                 </div>
-                <a class="btn" href="proyesy-punto.html">Abrir ProyeSY Punto</a>
+                <div class="card-actions">
+                  <a class="btn" href="proyectos/proyesy-punto/">Abrir proyecto</a>
+                  <a class="btn secondary" href="proyectos/proyesy-punto/ProyeSYPunto.apk">Descargar APK</a>
+                </div>
               </div>
             </article>
 
-            <aside class="roadmap-card" aria-label="Futuros programas">
-              <strong>Proximamente</strong>
+            <aside class="quiet-card" aria-label="Próximos proyectos">
+              <strong>Próximamente</strong>
               <p>
-                Este espacio queda reservado para los siguientes programas del ecosistema. Cuando nazca una nueva herramienta,
-                se agregara aqui con su estado, descripcion y enlace.
+                Este espacio queda preparado para los siguientes proyectos del ecosistema.
+                La portada puede crecer sin mezclar archivos de un proyecto con otro.
               </p>
               <ul class="small-list">
-                <li>Programas publicados</li>
-                <li>Herramientas en desarrollo</li>
-                <li>Apps internas del studio</li>
+                <li>proyectos/proyesy-punto/</li>
+                <li>proyectos/nuevo-proyecto/</li>
+                <li>assets/logos/</li>
               </ul>
             </aside>
+          </div>
+        </section>
+
+        <section id="logos">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Identidad</p>
+              <h2>Logos separados para usarlos donde los necesites.</h2>
+            </div>
+            <p>
+              Los logos ya no están dibujados dentro del HTML principal. Ahora viven como archivos SVG independientes.
+            </p>
+          </div>
+
+          <div class="logo-grid">
+            <article class="logo-card">
+              <img src="assets/logos/proyesy-space.svg" alt="Logo de ProyeSY Space">
+              <div>
+                <h3>ProyeSY Space</h3>
+                <p>Marca general del ecosistema y portada del catálogo.</p>
+                <span class="logo-path">assets/logos/proyesy-space.svg</span>
+              </div>
+            </article>
+
+            <article class="logo-card">
+              <img src="assets/logos/proyesy-punto.svg" alt="Logo de ProyeSY Punto">
+              <div>
+                <h3>ProyeSY Punto</h3>
+                <p>Marca del proyecto de ventas e inventario.</p>
+                <span class="logo-path">assets/logos/proyesy-punto.svg</span>
+              </div>
+            </article>
           </div>
         </section>
 
         <section id="vision">
           <div class="section-head">
             <div>
-              <p class="eyebrow">Vision</p>
-              <h2>Un ecosistema pequeño, ordenado y con personalidad.</h2>
+              <p class="eyebrow">Visión</p>
+              <h2>Orden simple para que cada proyecto crezca por su cuenta.</h2>
             </div>
             <p>
-              La idea no es hacer herramientas enormes por hacerlas enormes. Es crear piezas utiles que se puedan usar,
-              entender y mejorar con el tiempo.
+              La estructura queda preparada para sumar más páginas, APKs, imágenes y recursos sin convertir la raíz del sitio en un cajón mezclado.
             </p>
           </div>
-          <div class="grid">
-            <article>
-              <h3>Para usuarios reales</h3>
-              <p>Interfaces claras, textos directos y funciones que tengan sentido en el dia a dia.</p>
+
+          <div class="value-grid">
+            <article class="value-card">
+              <h3>Una carpeta por proyecto</h3>
+              <p>Cada app puede tener su página, descargas y archivos relacionados en un mismo lugar.</p>
             </article>
-            <article>
-              <h3>Para evolucionar</h3>
-              <p>Cada producto puede sumar funciones, versiones y mejoras sin perder su proposito principal.</p>
+            <article class="value-card">
+              <h3>Logos reutilizables</h3>
+              <p>Los SVG quedan disponibles para tarjetas, páginas nuevas, publicaciones o cualquier recurso visual.</p>
             </article>
-            <article>
-              <h3>Para mantenerse propio</h3>
-              <p>ProyeSY Space busca que cada programa tenga identidad, pero que todos se sientan parte de la misma familia.</p>
+            <article class="value-card">
+              <h3>Portada más limpia</h3>
+              <p>El index funciona como catálogo principal, no como depósito de todos los archivos del sitio.</p>
             </article>
           </div>
         </section>
@@ -584,13 +628,8 @@
 
       <footer>
         <strong>ProyeSY Space</strong>
-        <span id="statusText">Studio y catalogo de programas.</span>
+        <span>Studio y catálogo de programas. Primer producto: ProyeSY Punto.</span>
       </footer>
     </div>
-
-    <script>
-      const statusText = document.getElementById("statusText");
-      statusText.textContent = "Studio y catalogo de programas. Primer producto: ProyeSY Punto.";
-    </script>
   </body>
 </html>
